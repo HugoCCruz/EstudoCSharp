@@ -46,7 +46,7 @@ void Menu()
             System.Console.WriteLine($"Você escolheu a opção {escolha}");
             break;
         case 0:
-            System.Console.WriteLine($"Você Sair");
+            System.Console.WriteLine($"Você escolheu sair");
             break;
         default:
             System.Console.WriteLine("Você selecionou uma opção inválida");
@@ -60,9 +60,7 @@ Menu();
 void RegistrarBanda()
 {
     Console.Clear();
-    Console.WriteLine("------------------");
-    Console.WriteLine("Registro de bandas");
-    Console.WriteLine("------------------");
+    ConcatenarTitulo("Regitro de Bandas");
     Console.WriteLine("Digite o nome da banda que deseja registrar:");
     string nomebanda = Console.ReadLine()!;
 
@@ -87,6 +85,8 @@ void RegistrarBanda()
     {
         Console.WriteLine("Opção Incorreta");
     }
+
+    Console.WriteLine("\nRetorando ao menu");
     Thread.Sleep(2000);
     Console.Clear();
     Menu();
@@ -96,14 +96,53 @@ void RegistrarBanda()
 void MostrarLista()
 {
     Console.Clear();
-    Console.WriteLine("------------------");
-    Console.WriteLine("Lista de bandas");
-    Console.WriteLine("------------------");
-    for (int i = 0; i < listaBandas.Count; i++)
-        Console.WriteLine($"{listaBandas[i]}");
+    ConcatenarTitulo("Lista de bandas");
+    if (listaBandas.Count == 0)
     {
-
+        Console.WriteLine(" A lista está vazia no momento (T-T)");
+        Console.WriteLine("Pressione qualquer tecla para retornar ao Menu");
+        Console.ReadKey();
+        Console.WriteLine("\nRetorando ao menu");
+        Thread.Sleep(2000);
+        Console.Clear();
+        Menu();
     }
+    else {
+        //for (int i = 0; i < listaBandas.Count; i++) // para listar utiliando o for padrão
+        //{
+        //    listaBandas.Sort();// Deixa a lista em ordem aufabética
+        //    Console.WriteLine($"Banda: {listaBandas[banda]}");
+        //}
+        foreach (string banda in listaBandas)
+        {
+           
+            //listaBandas.Sort();// Deixa a lista em ordem alfabética
+            Console.WriteLine($"Banda: {banda}");
+            
+            }
+
+        }
+        Console.WriteLine("Pressione qualquer tecla para retornar ao Menu");
+        Console.ReadKey();
+        Console.WriteLine("\nRetorando ao menu");
+        Thread.Sleep(2000);
+        Console.Clear();
+        Menu();
+    }
+
+
+void Media()
+{
+
+}
+
+void ConcatenarTitulo(string titulo)
+{
+    int quantiaElementos = titulo.Length;
+    String elementos = String.Empty.PadLeft(quantiaElementos, '-');
+    Console.WriteLine(elementos);
+    Console.WriteLine(titulo);
+    Console.WriteLine(elementos + "\n");
 }
 
 
