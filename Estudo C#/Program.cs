@@ -1,9 +1,13 @@
 ﻿//SpotiSound
 using System.Diagnostics.Tracing;
+using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
 
 string saudacao = "Olá, bem vindo ao SpotiSound!";
-List<string> listaBandas = new List<string>();
+//List<string> listaBandas = new List<string>();
+Dictionary<string, List<int>>  dcBandas = new Dictionary<string, List<int>>(); 
+
+dcBandas.Add("Banda Exemplo", new List<int> { 10, 5, 7});
 
 void ExibirLogo()
 {
@@ -43,7 +47,7 @@ void Menu()
             MostrarLista();
             break;
         case 3:
-            System.Console.WriteLine($"Você escolheu a opção {escolha}");
+            AvaliarBanda();
             break;
         case 0:
             System.Console.WriteLine($"Você escolheu sair");
@@ -72,14 +76,16 @@ void RegistrarBanda()
     if (escolha == 1)
     {
         Console.WriteLine($"A banda {nomebanda} foi adicionada com sucesso!");
-        listaBandas.Add(nomebanda);
+        //listaBandas.Add(nomebanda); Para adicionar uma banda à lista
+        dcBandas.Add(nomebanda, new List<int>());//Para adicionar uma banda ao dicionário
     }
     else if (escolha == 2)
     {
         Console.WriteLine("digite o nome correto:");
         nomebanda = System.Console.ReadLine()!;
         Console.WriteLine($"A banda {nomebanda} foi adicionada com sucesso!");
-        listaBandas.Add(nomebanda);
+        //listaBandas.Add(nomebanda);
+        dcBandas.Add(nomebanda, new List<int>());
     }
     else
     {
@@ -97,7 +103,7 @@ void MostrarLista()
 {
     Console.Clear();
     ConcatenarTitulo("Lista de bandas");
-    if (listaBandas.Count == 0)
+    if (dcBandas.Count == 0)
     {
         Console.WriteLine(" A lista está vazia no momento (T-T)");
         Console.WriteLine("Pressione qualquer tecla para retornar ao Menu");
@@ -108,15 +114,15 @@ void MostrarLista()
         Menu();
     }
     else {
-        //for (int i = 0; i < listaBandas.Count; i++) // para listar utiliando o for padrão
+        //for (int i = 0; i < listaBandas.Count; i++) //    Para listar utiliando o for padrão
         //{
-        //    listaBandas.Sort();// Deixa a lista em ordem aufabética
+        //    listaBandas.Sort();//                          Deixa a lista em ordem alfabética
         //    Console.WriteLine($"Banda: {listaBandas[banda]}");
         //}
-        foreach (string banda in listaBandas)
+        foreach (string banda in dcBandas.Keys)
         {
            
-            //listaBandas.Sort();// Deixa a lista em ordem alfabética
+            //listaBandas.Sort();// Deixa a lista em ordem alfabética mas deu erro
             Console.WriteLine($"Banda: {banda}");
             
             }
@@ -125,14 +131,40 @@ void MostrarLista()
         Console.WriteLine("Pressione qualquer tecla para retornar ao Menu");
         Console.ReadKey();
         Console.WriteLine("\nRetorando ao menu");
-        Thread.Sleep(2000);
+        Thread.Sleep(3000);
         Console.Clear();
         Menu();
     }
 
 
-void Media()
+void AvaliarBanda()
 {
+    ConcatenarTitulo("Avaliar banda");
+    Console.WriteLine("QUal banda deseja avaliar?");
+    string bandaEscolhida = Console.ReadLine()!;
+
+    if (dcBandas.ContainsKey(bandaEscolhida)) {
+        Console.WriteLine("Qual nota você deseja dar para a banda?");
+        int nota = int.Parse(Console.ReadLine()!);
+        dcBandas[bandaEscolhida].Add(nota);
+        Console.WriteLine($"\nA nota foi adiconada com sucesso!");
+        Console.WriteLine("\nRetorando ao menu");
+        Thread.Sleep(3000);
+        Console.Clear();
+        Menu();
+    }
+    else
+    {
+        Console.WriteLine($"\nA banda {bandaEscolhida} não foi encontrada! ");
+        Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
+        Console.ReadKey();
+        Console.WriteLine("\nRetorando ao menu");
+        Thread.Sleep(3000);
+        Console.Clear();
+        Menu();
+    }
+    
+
 
 }
 
