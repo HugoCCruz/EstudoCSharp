@@ -55,6 +55,7 @@ Menu();
 
 void CaseAlunos()
 {
+    Console.WriteLine("média dos Alunos");
 
     foreach(var aluno in Alunos)
     {
@@ -72,6 +73,8 @@ void CaseAlunos()
 
 void EstoqueMercado()
 {
+    Console.WriteLine("Estoque de Mercado");
+
     Console.WriteLine("Digite o nome do produto que deseja consultar:");
     string produto = Console.ReadLine()!;
 
