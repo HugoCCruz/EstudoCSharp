@@ -71,7 +71,7 @@ void CaseAlunos()
         //Utilizando o Comando Average() que calcula automaticamente a média da lista de uma chave
         for (int i = 0; i < aluno.Value.Count; i++)
         {
-            Console.WriteLine($"A média do aluno {aluno} é {aluno.Value.Average()}");
+           Console.WriteLine($"A média do aluno {aluno} é {aluno.Value.Average()}");
 
         }
 
