@@ -59,16 +59,24 @@ void CaseAlunos()
 
     foreach(var aluno in Alunos)
     {
-        double soma = 0 ;
-        for (int i = 0; aluno.Value.Count > 0; i++){
+        //Utilizando um sistema para calcular a média
+        double soma = 0;
+        for (int i = 0; i < aluno.Value.Count; i++)
+        {
             soma += aluno.Value[i];
         }
         double media = soma / aluno.Value.Count;
         Console.WriteLine($"A média do aluno {aluno} é {media}");
 
+        //Utilizando o Comando Average() que calcula automaticamente a média da lista de uma chave
+        for (int i = 0; i < aluno.Value.Count; i++)
+        {
+            Console.WriteLine($"A média do aluno {aluno} é {aluno.Value.Average()}");
+
+        }
 
     }
-    
+
 }
 
 void EstoqueMercado()
