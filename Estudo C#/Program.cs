@@ -29,7 +29,7 @@ void Menu()
     System.Console.WriteLine("1 - Regitrar uma banda");
     System.Console.WriteLine("2 - Lista de bandas");
     System.Console.WriteLine("3 - Avaliar uma banda");
-    System.Console.WriteLine("3 - Média da banda");
+    System.Console.WriteLine("4 - Média da banda");
     System.Console.WriteLine("0 - Sair");
     System.Console.WriteLine("------------------------------------------------");
 
@@ -48,6 +48,9 @@ void Menu()
             break;
         case 3:
             AvaliarBanda();
+            break;
+         case 4:
+            Media();
             break;
         case 0:
             System.Console.WriteLine($"Você escolheu sair");
@@ -166,6 +169,34 @@ void AvaliarBanda()
     
 
 
+}
+void Media()
+{
+    ConcatenarTitulo("Média das bandas");
+    Console.WriteLine("Qual banda deseja consultar?");
+    string bandaEscolhida = Console.ReadLine()!;
+
+    if (dcBandas.ContainsKey(bandaEscolhida))
+    {
+            List<int> notasBanda = dcBandas[bandaEscolhida];        
+            Console.WriteLine($"A média da banda {bandaEscolhida} é {notasBanda.Average():F2}");
+        
+        Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
+        Console.WriteLine("\nRetorando ao menu");
+        Thread.Sleep(3000);
+        Console.Clear();
+        Menu();
+    }
+    else
+    {
+        Console.WriteLine($"A banda {bandaEscolhida} não foi encontrada");
+        Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
+        Console.ReadKey();
+        Console.WriteLine("\nRetorando ao menu");
+        Thread.Sleep(3000);
+        Console.Clear();
+        Menu();
+    }
 }
 
 void ConcatenarTitulo(string titulo)
