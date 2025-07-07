@@ -2,20 +2,28 @@
 using System.Net.NetworkInformation;
 using OrientacaoObjeto;
 
-Album albumldoQueen = new Album();
-albumldoQueen.Nome = "A night ate the Opera";
+Banda queen = new Banda("Queen");   
 
-Musica musica1 = new Musica();
-musica1.Nome = "Love of my life";
-musica1.Duracao = 213;
+Album albumldoQueen = new Album("A night ate the Opera");
 
-Musica musica2 = new Musica();
-musica2.Nome = "Bohemian Rhapsody";
-musica2.Duracao = 354;
+Musica musica1 = new Musica(queen, "Love of my life") 
+{
+    Duracao = 213,
+    Disponivel = true,
+};
+
+Musica musica2 = new Musica(queen, "Bohemian Rhapsody")
+{
+    Duracao = 354,
+    Disponivel = false,
+};
 
 albumldoQueen.AdicionarMusica(musica1);
 albumldoQueen.AdicionarMusica(musica2);
+queen.AdicionarAlbum(albumldoQueen);
 
-albumldoQueen.ExibirAlbum();
+musica1.ExibirFichaTecnica();
+musica2.ExibirFichaTecnica();
+queen.ExibirDiscografia();
 
 
