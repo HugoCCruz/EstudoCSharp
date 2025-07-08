@@ -15,11 +15,10 @@ namespace OrientacaoObjeto
             Nome = nome;
         }
 
-        public string Nome {get; set;}
+        public string Nome {get;}
         public Banda Artista { get;}   
         public int Duracao { get; set; }  
         public bool Disponivel { get; set; }
-        public Genero Genero { get; set; }
         public string DescricaoResumida => $"A musica {Nome} pertence à banda {Artista}";
 
 
