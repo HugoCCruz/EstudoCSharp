@@ -1,21 +1,15 @@
 ﻿//SpotiSound
 using SpotiSound.Modelos;
-using System.Diagnostics.Tracing;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
-using System.Runtime.Intrinsics.Arm;
-
 
 string saudacao = "Olá, bem vindo ao SpotiSound!";
 
-
 Banda bandaExemplo = new Banda("Banda exemplo");
-bandaExemplo.AdicionarNota(10);
-bandaExemplo.AdicionarNota(9);
-bandaExemplo.AdicionarNota(6);
+bandaExemplo.AdicionarNota(new Avaliacao(10));
+bandaExemplo.AdicionarNota(new Avaliacao(9));
+bandaExemplo.AdicionarNota(new Avaliacao(6));
 
 
-Dictionary<string, Banda>  dcBandas = new Dictionary<string, Banda>(); 
+Dictionary<string, Banda> dcBandas = new Dictionary<string, Banda>(); 
 
 dcBandas.Add(bandaExemplo.Nome, bandaExemplo);
 
@@ -179,14 +173,15 @@ void MostrarLista()
 
 void AvaliarBanda()
 {
+    Console.Clear();
     ConcatenarTitulo("Avaliar banda");
-    Console.WriteLine("QUal banda deseja avaliar?");
+    Console.WriteLine("Qual banda deseja avaliar?");
     string bandaEscolhida = Console.ReadLine()!;
 
     if (dcBandas.ContainsKey(bandaEscolhida)) {
         Banda banda = dcBandas[bandaEscolhida];
         Console.WriteLine("Qual nota você deseja dar para a banda?");
-        int nota = int.Parse(Console.ReadLine()!);
+        Avaliacao nota = Avaliacao.Parse(Console.ReadLine()!);
         banda.AdicionarNota(nota);
         Console.WriteLine($"\nA nota foi adiconada com sucesso!");
         Console.WriteLine("\nRetorando ao menu");
@@ -210,6 +205,7 @@ void AvaliarBanda()
 }
 void ExibirDetalhes()
 {
+    Console.Clear();
     ConcatenarTitulo("Detalhes das bandas");
     Console.WriteLine("Qual banda deseja consultar?");
     string bandaEscolhida = Console.ReadLine()!;
@@ -217,24 +213,21 @@ void ExibirDetalhes()
     if (dcBandas.ContainsKey(bandaEscolhida))
     {
         Banda banda = dcBandas[bandaEscolhida];
-        Console.WriteLine($"{banda.ExibirDiscografia}");
-        
-        Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
-        Console.WriteLine("\nRetorando ao menu");
-        Thread.Sleep(2000);
-        Console.Clear();
-        ExibirMenu();
+        banda.ExibirDiscografia();
+
+
     }
     else
     {
         Console.WriteLine($"A banda {bandaEscolhida} não foi encontrada");
-        Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
-        Console.ReadKey();
-        Console.WriteLine("\nRetorando ao menu");
-        Thread.Sleep(2000);
-        Console.Clear();
-        ExibirMenu();
+       
     }
+    Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
+    Console.ReadKey();
+    Console.WriteLine("\nRetorando ao menu");
+    Thread.Sleep(2000);
+    Console.Clear();
+    ExibirMenu();
 }
 
 void ConcatenarTitulo(string titulo)

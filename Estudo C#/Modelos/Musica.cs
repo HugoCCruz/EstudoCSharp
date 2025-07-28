@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-    class Musica
+    internal class Musica
     {
 
         public Musica(Banda artista, string nome)
