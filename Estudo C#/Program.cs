@@ -1,4 +1,5 @@
 ﻿//SpotiSound
+using SpotiSound.Menus;
 using SpotiSound.Modelos;
 
 string saudacao = "Olá, bem vindo ao SpotiSound!";
@@ -15,7 +16,7 @@ dcBandas.Add(bandaExemplo.Nome, bandaExemplo);
 
 void ExibirLogo()
 {
-    System.Console.WriteLine(@"
+    Console.WriteLine(@"
      ░██████╗██████╗░░█████╗░████████╗██╗░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
      ██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██║██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
      ╚█████╗░██████╔╝██║░░██║░░░██║░░░██║╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
@@ -38,9 +39,8 @@ void ExibirMenu()
     Console.WriteLine("0 - Sair");
     Console.WriteLine("------------------------------------------------");
 
-
-    System.Console.Write("\nSelecione a opção desejada: ");
-    string opcoes = System.Console.ReadLine()!;
+    Console.Write("\nSelecione a opção desejada: ");
+    string opcoes = Console.ReadLine()!;
     int escolha = int.Parse(opcoes);
 
     switch (escolha)
@@ -58,13 +58,15 @@ void ExibirMenu()
             AvaliarBanda();
             break;
         case 5:
-            ExibirDetalhes();
+            MenuExibirDetalhes menu = new MenuExibirDetalhes();
+            menu.Executar(dcBandas);
+            ExibirMenu();
             break;
         case 0:
-            System.Console.WriteLine($"Você escolheu sair");
+            Console.WriteLine($"Você escolheu sair");
             break;
         default:
-            System.Console.WriteLine("Você selecionou uma opção inválida");
+            Console.WriteLine("Você selecionou uma opção inválida");
             break;
     }
 }
@@ -81,7 +83,7 @@ void RegistrarBanda()
 
     Console.WriteLine($"\n{nomebanda}\nO nome da banda está correto?");
     Console.WriteLine("1 - Sim\n2 - Não");
-    string opcoes = System.Console.ReadLine()!;
+    string opcoes = Console.ReadLine()!;
     int escolha = int.Parse(opcoes);
 
     if (escolha == 1)
@@ -92,7 +94,7 @@ void RegistrarBanda()
     else if (escolha == 2)
     {
         Console.WriteLine("digite o nome correto:");
-        nomebanda = System.Console.ReadLine()!;
+        nomebanda = Console.ReadLine()!;
         Console.WriteLine($"A banda {nomebanda} foi adicionada com sucesso!");
         dcBandas.Add(nomebanda, new Banda(nomebanda));
     }
@@ -133,11 +135,9 @@ void RegistrarAlbum()
         Thread.Sleep(2000);
         Console.Clear();
         ExibirMenu();
-    }
-    
-    
-}
+    }   
 
+}
 void MostrarLista()
 {
     Console.Clear();
@@ -156,11 +156,8 @@ void MostrarLista()
         
         foreach (string banda in dcBandas.Keys)
         {
-           
-            Console.WriteLine($"Banda: {banda}");
-            
+            Console.WriteLine($"Banda: {banda}");   
             }
-
         }
         Console.WriteLine("Pressione qualquer tecla para retornar ao Menu");
         Console.ReadKey();
@@ -169,8 +166,6 @@ void MostrarLista()
         Console.Clear();
         ExibirMenu();
     }
-
-
 void AvaliarBanda()
 {
     Console.Clear();
@@ -199,37 +194,7 @@ void AvaliarBanda()
         Console.Clear();
         ExibirMenu();
     }
-    
-
-
 }
-void ExibirDetalhes()
-{
-    Console.Clear();
-    ConcatenarTitulo("Detalhes das bandas");
-    Console.WriteLine("Qual banda deseja consultar?");
-    string bandaEscolhida = Console.ReadLine()!;
-
-    if (dcBandas.ContainsKey(bandaEscolhida))
-    {
-        Banda banda = dcBandas[bandaEscolhida];
-        banda.ExibirDiscografia();
-
-
-    }
-    else
-    {
-        Console.WriteLine($"A banda {bandaEscolhida} não foi encontrada");
-       
-    }
-    Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
-    Console.ReadKey();
-    Console.WriteLine("\nRetorando ao menu");
-    Thread.Sleep(2000);
-    Console.Clear();
-    ExibirMenu();
-}
-
 void ConcatenarTitulo(string titulo)
 {
     int quantiaElementos = titulo.Length;
@@ -238,6 +203,3 @@ void ConcatenarTitulo(string titulo)
     Console.WriteLine(titulo);
     Console.WriteLine(elementos + "\n");
 }
-
-
-

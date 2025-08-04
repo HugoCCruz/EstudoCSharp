@@ -1,7 +1,4 @@
-﻿
-
-namespace SpotiSound.Modelos;  
-
+﻿namespace SpotiSound.Modelos;  
 
 internal class Banda
 {
@@ -27,7 +24,7 @@ internal class Banda
     public void AdicionarAlbum(Album album)
     {
         albums.Add(album);
-        
+
     }
     public void AdicionarNota(Avaliacao nota)
     {
