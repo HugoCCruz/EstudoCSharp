@@ -1,22 +1,12 @@
-﻿
-using System;
-using SpotiSound.Modelos;
+﻿using SpotiSound.Modelos;
+using SpotiSound.Menus;
 
-namespace SpotiSound.Menus;
-
-internal class MenuExibirDetalhes
+internal class MenuExibirDetalhes : Menu
 {
-    void ConcatenarTitulo(string titulo)
+  
+    public override void Executar(Dictionary<string, Banda> dcBandas)
     {
-        int quantiaElementos = titulo.Length;
-        String elementos = String.Empty.PadLeft(quantiaElementos, '-');
-        Console.WriteLine(elementos);
-        Console.WriteLine(titulo);
-        Console.WriteLine(elementos + "\n");
-    }
-    public void Executar(Dictionary<string, Banda> dcBandas)
-    {
-        Console.Clear();
+        base.Executar(dcBandas);
         ConcatenarTitulo("Detalhes das bandas");
         Console.WriteLine("Qual banda deseja consultar?");
         string bandaEscolhida = Console.ReadLine()!;
@@ -25,10 +15,19 @@ internal class MenuExibirDetalhes
         {
             Banda banda = dcBandas[bandaEscolhida];
             Console.WriteLine($"\nA média da banda {bandaEscolhida} é {banda.Media}");
-            /*
-            -
-            */
-            Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
+            Console.WriteLine($"Álbuns da banda:");
+            if (banda.Albuns.Any())
+            {
+                foreach (var album in banda.Albuns)
+                {
+                    Console.WriteLine($"- {album.Nome}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"\nA banda {banda.Nome} não possui álbunsregistrados");
+            }
+                Console.WriteLine("\nPressione qualquer tecla para retornar ao Menu");
             Console.ReadKey();
             Console.WriteLine("\nRetorando ao menu");
             Thread.Sleep(2000);

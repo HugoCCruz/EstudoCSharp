@@ -19,7 +19,7 @@ internal class Banda
             else return notas.Average(a => a.Nota);
         }
     }
-    public List<Album> Albuns => Albuns;
+    public List<Album> Albuns => albums;
 
     public void AdicionarAlbum(Album album)
     {
