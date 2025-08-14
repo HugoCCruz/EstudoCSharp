@@ -1,5 +1,5 @@
 ﻿using SpotiSound.Menus;
-using SpotiSound.Modelos;
+namespace SpotiSound.Modelos;
 
 internal class MenuLista : Menu
 {

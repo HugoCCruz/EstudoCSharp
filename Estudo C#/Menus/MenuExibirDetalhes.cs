@@ -1,5 +1,5 @@
 ﻿using SpotiSound.Modelos;
-using SpotiSound.Menus;
+namespace SpotiSound.Menus;
 
 internal class MenuExibirDetalhes : Menu
 {
@@ -14,13 +14,13 @@ internal class MenuExibirDetalhes : Menu
         if (dcBandas.ContainsKey(bandaEscolhida))
         {
             Banda banda = dcBandas[bandaEscolhida];
-            Console.WriteLine($"\nA média da banda {bandaEscolhida} é {banda.Media}");
+            Console.WriteLine($"\nA média da banda {bandaEscolhida} é {banda.Media:F2}");
             Console.WriteLine($"Álbuns da banda:");
             if (banda.Albuns.Any())
             {
                 foreach (var album in banda.Albuns)
                 {
-                    Console.WriteLine($"- {album.Nome}");
+                    Console.WriteLine($"{album.Nome} | {album.Media:F2}");
                 }
             }
             else

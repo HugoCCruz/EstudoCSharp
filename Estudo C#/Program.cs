@@ -19,7 +19,8 @@ opcoes.Add(1, new MenuRegistrarBanda());
 opcoes.Add(2, new MenuRegistrarAlbum());
 opcoes.Add(3, new MenuLista());
 opcoes.Add(4, new MenuAvaliarBanda());
-opcoes.Add(5, new MenuExibirDetalhes());
+opcoes.Add(5, new MenuAvaliarAlbum());
+opcoes.Add(6, new MenuExibirDetalhes());
 opcoes.Add(0, new MenuSair());
 
 void ExibirLogo()
@@ -43,7 +44,8 @@ void ExibirMenu()
     Console.WriteLine("2 - Registrar Álbum");
     Console.WriteLine("3 - Lista de bandas");
     Console.WriteLine("4 - Avaliar uma banda");
-    Console.WriteLine("5 - Mostrar detalhes");
+    Console.WriteLine("5 - Avaliar um álbum");
+    Console.WriteLine("6 - Mostrar detalhes");
     Console.WriteLine("0 - Sair");
     Console.WriteLine("------------------------------------------------");
 
